@@ -35,7 +35,7 @@ public class ManagerPoolRoad : GenericSingleton<ManagerPoolRoad>
                 List<GameObject> listObjPool = new List<GameObject>();
                 for (int j = 0; j < poolSize; j++)
                 {
-                    GameObject obj = Instantiate(preFab);
+                    GameObject obj = Instantiate(preFab,transform);
                     obj.SetActive(false);
                     listObjPool.Add(obj);
                 }

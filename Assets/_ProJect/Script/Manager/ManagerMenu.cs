@@ -2,7 +2,6 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class ManagerMenu : GenericSingleton<ManagerMenu>
 {
     [Header("Setting")]

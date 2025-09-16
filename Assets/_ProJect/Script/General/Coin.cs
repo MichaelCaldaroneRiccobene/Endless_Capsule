@@ -6,7 +6,6 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private float velocityRotation = 2;
 
-
     private void FixedUpdate()
     {
         transform.rotation *= Quaternion.Euler(Vector3.up * (velocityRotation * Time.fixedDeltaTime));

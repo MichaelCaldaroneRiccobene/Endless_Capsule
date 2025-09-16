@@ -167,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341,7 +341,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -446,7 +446,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -656,7 +656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -761,7 +761,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -971,7 +971,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6af20d21fdb3e9846be9fcc5368045e6, type: 2}
+  - {fileID: 2100000, guid: 86a0a91b3483d4ee4b1dafd54c5b689d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1215,14 +1215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070b5857a7063624bbf76d4bd8ca7e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinInTheGround: 10
-  obstacleInTheGroundJump: 3
-  obstacleInTheGroundSlide: 1
-  obstacleEnemy: 1
-  maxCoinInTheGround: 20
-  maxObstacleInTheGround: 6
-  maxObstacleInTheGroundSlide: 2
-  maxObstacleEnemy: 3
+  coinInTheGround: 3
+  obstacleInTheGroundJump: 5
+  obstacleInTheGroundSlide: 5
+  obstacleEnemy: 5
+  maxCoinInTheGround: 10
+  maxObstacleInTheGround: 5
+  maxObstacleInTheGroundSlide: 3
+  maxObstacleEnemy: 5
   coins: []
   obstacleTargetsJump:
   - {fileID: 8792131780344056053}
@@ -1430,6 +1430,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1885913161765606252, guid: 854091f08cd544241b6e8d9d33ce516e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2206656625548657528, guid: 854091f08cd544241b6e8d9d33ce516e,
         type: 3}
       propertyPath: m_IsActive
@@ -1471,6 +1476,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3493626185465712155, guid: 854091f08cd544241b6e8d9d33ce516e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592721861702791811, guid: 854091f08cd544241b6e8d9d33ce516e,
         type: 3}
       propertyPath: m_IsActive
       value: 0

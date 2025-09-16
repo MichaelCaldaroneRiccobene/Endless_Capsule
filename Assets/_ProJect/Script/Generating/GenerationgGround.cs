@@ -50,14 +50,14 @@ public class GenerationgGround : MonoBehaviour
         }
         GenerateGround();
 
-        //Debug.Log("Position.Z :" + player.position.z.ToString("F0"));
+        //Debug.Log("Position.Z :" + Player.position.z.ToString("F0"));
         if (player.position.z >= incrementDistanceForNextLevel) NextLevel();
     }
 
     private void NextLevel()
     {
         Debug.Log("Next Level");
-        incrementDistanceForNextLevel += incrementDistanceForNextLevel;
+        incrementDistanceForNextLevel += distanceForNextLevel;
         currentLevelIndex++;
 
         if (currentLevelIndex > howManyLevels) currentLevelIndex = 0;
@@ -69,7 +69,7 @@ public class GenerationgGround : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(15);
             isBossOne = true;
 
             while (!isBossSpwaunadet) yield return null;

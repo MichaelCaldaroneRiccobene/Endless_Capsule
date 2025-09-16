@@ -15,7 +15,6 @@ public class ManagerPoolObj : GenericSingleton<ManagerPoolObj>
         foreach (PoolObj_SO poolObj in poolObjs)
         {
             if (poolObj == null) continue;
-
             Queue<GameObject> objPool = new Queue<GameObject>();
 
             for(int i = 0; i < poolObj.StartPool; i++)

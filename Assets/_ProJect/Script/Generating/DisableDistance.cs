@@ -5,9 +5,9 @@ public class DisableDistance : MonoBehaviour
 {
     private Transform player;
 
-    private void Awake()
+    private IEnumerator Start()
     {
-        if (player == null) return  ;
+        yield return null;
         player  = FindAnyObjectByType<Player_Movement>().transform;
     }
 
@@ -15,6 +15,7 @@ public class DisableDistance : MonoBehaviour
 
     private IEnumerator CheckDistanceRoutione()
     {
+        yield return new WaitForSeconds(1);
         if(player == null) yield break;
         while (true)
         {
@@ -26,5 +27,10 @@ public class DisableDistance : MonoBehaviour
         }
     }
 
-    private void OnDisable() => StopAllCoroutines();
+    private void OnDisable()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        StopAllCoroutines();
+    }
 }

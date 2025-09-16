@@ -4,55 +4,92 @@ using UnityEngine;
 
 public class EnableObstacle : MonoBehaviour
 {
+    [Header("Setting")]
+    [SerializeField] private float upgradeDistanze = 300;
+
+    [Header("Setting How Many Obj")]
     [SerializeField] private int coinInTheGround = 10;
-    [SerializeField] private int obstacleInTheGroundJump = 4;
-    [SerializeField] private int obstacleInTheGroundSlide = 2;
-    [SerializeField] private int obstacleEnemy = 4;
+    [SerializeField] private int obstacleInTheGroundJump = 2;
+    [SerializeField] private int obstacleInTheGroundSlide = 1;
+    [SerializeField] private int obstacleEnemy = 1;
 
+    [Header("Setting For Max How Many Obj")]
+    [SerializeField] private int maxCoinInTheGround = 20;
+    [SerializeField] private int maxObstacleInTheGround = 5;
+    [SerializeField] private int maxObstacleInTheGroundSlide = 3;
+    [SerializeField] private int maxObstacleEnemy = 5;
+
+    [Header("Setting List OF Obj")]
     [SerializeField] private Transform[] coins;
-
     [SerializeField] private Transform[] obstacleTargetsJump;
     [SerializeField] private Transform[] obstacleTargetsSlide;
     [SerializeField] private Transform[] obstacleTargetsEnemy;
 
+    private float lastUpgradeDistance;
+
+    private void Start()
+    {
+        lastUpgradeDistance = upgradeDistanze;
+    }
 
     private void OnEnable()
     {
         if(coins != null) foreach (Transform coin in coins) { coin.gameObject.SetActive(true); StartCoroutine(SetUpCoinsRoutine()); }
 
-        //
-        if (obstacleTargetsJump != null) for (int i = 0; i < obstacleTargetsJump.Length; i++) obstacleTargetsJump[i].gameObject.SetActive(false);
-        if (obstacleTargetsJump != null) for (int i = 0;i < obstacleInTheGroundJump; i++) obstacleTargetsJump[Random.Range(0,obstacleTargetsJump.Length)].gameObject.SetActive(true);
+        SpawnObstacles(obstacleTargetsJump, obstacleInTheGroundJump);
+        SpawnObstacles(obstacleTargetsSlide, obstacleInTheGroundSlide);
+        SpawnObstacles(obstacleTargetsEnemy, obstacleEnemy);
 
-        ///
-        if (obstacleTargetsSlide != null) for (int i = 0; i < obstacleTargetsSlide.Length; i++) obstacleTargetsSlide[i].gameObject.SetActive(false);
-        if (obstacleTargetsSlide != null) for (int i = 0; i < obstacleInTheGroundSlide; i++) obstacleTargetsSlide[Random.Range(0, obstacleTargetsSlide.Length)].gameObject.SetActive(true);
-
-        ///
-
-        if (obstacleTargetsEnemy != null) for (int i = 0; i < obstacleTargetsEnemy.Length; i++) obstacleTargetsEnemy[i].gameObject.SetActive(false);
-        if (obstacleTargetsEnemy != null) for (int i = 0; i < obstacleEnemy; i++) obstacleTargetsEnemy[Random.Range(0, obstacleTargetsEnemy.Length)].gameObject.SetActive(true);
-
+        if(transform.position.z > lastUpgradeDistance)
+        {
+            Debug.Log("Upgrade");
+            lastUpgradeDistance += upgradeDistanze;
+            Upgrade();
+        }
     }
 
     private IEnumerator SetUpCoinsRoutine()
     {
         yield return null;
-        List<Transform> coinActiveList = new List<Transform>();
-        foreach (Transform coin in coins) { if (coin.gameObject.activeInHierarchy) coinActiveList.Add(coin); }
-
-        for (int i = 0; i < coinActiveList.Count; i++) coinActiveList[i].gameObject.SetActive(false);
-        for (int i = 0; i < coinInTheGround; i++) coinActiveList[Random.Range(0, coinActiveList.Count)].gameObject.SetActive(true);
+        SpawnObstacles(coins, coinInTheGround);
     }
+
+    public void Upgrade()
+    {
+        coinInTheGround = Mathf.Clamp(++coinInTheGround, 0, maxCoinInTheGround);
+        obstacleInTheGroundJump = Mathf.Clamp(++obstacleInTheGroundJump, 0, maxObstacleInTheGround);
+        obstacleInTheGroundSlide = Mathf.Clamp(++obstacleInTheGroundSlide, 0, maxObstacleInTheGroundSlide);
+        obstacleEnemy = Mathf.Clamp(++obstacleEnemy, 0, maxObstacleEnemy);
+    }
+
+    private void SpawnObstacles(Transform[] typeList,int howMany)
+    {
+        if (typeList == null || typeList.Length == 0) return;
+        foreach (Transform obj in typeList)  obj.gameObject.SetActive(false); 
+
+        howMany = Mathf.Min(howMany, typeList.Length);
+        List<Transform> activeList = new List<Transform>();
+        for (int i = 0; i < howMany; i++)
+        {
+            GameObject obj = typeList[Random.Range(0, typeList.Length)].gameObject;
+
+            while (activeList.Contains(obj.transform))
+            {
+                obj = typeList[Random.Range(0, typeList.Length)].gameObject;
+            }
+
+            activeList.Add(obj.transform);
+            obj.SetActive(true);
+        }
+    }
+
+    private void DisableObstacles(Transform[] typeList) { if (typeList != null) foreach (Transform obj in typeList) {if(obj.gameObject.activeInHierarchy) obj.gameObject.SetActive(false); } }
 
     private void OnDisable() 
     {
-        if (coins != null) foreach (Transform coin in coins) coin.gameObject.SetActive(false);
-        //
-        if (obstacleTargetsJump != null) for (int i = 0; i < obstacleTargetsJump.Length; i++) obstacleTargetsJump[i].gameObject.SetActive(false);
-        ///
-        if (obstacleTargetsSlide != null) for (int i = 0; i < obstacleTargetsSlide.Length; i++) obstacleTargetsSlide[i].gameObject.SetActive(false);
-        ///
-        if (obstacleTargetsEnemy != null) for (int i = 0; i < obstacleTargetsEnemy.Length; i++) obstacleTargetsEnemy[i].gameObject.SetActive(false);
+        DisableObstacles(coins);
+        DisableObstacles(obstacleTargetsJump);
+        DisableObstacles(obstacleTargetsSlide);
+        DisableObstacles(obstacleTargetsEnemy);
     }
 }

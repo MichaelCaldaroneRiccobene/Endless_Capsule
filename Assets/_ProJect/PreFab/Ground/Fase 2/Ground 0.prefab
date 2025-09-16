@@ -1215,10 +1215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070b5857a7063624bbf76d4bd8ca7e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinInTheGround: 10
-  obstacleInTheGroundJump: 4
+  coinInTheGround: 5
+  obstacleInTheGroundJump: 3
   obstacleInTheGroundSlide: 2
-  obstacleEnemy: 4
+  obstacleEnemy: 1
+  maxCoinInTheGround: 20
+  maxObstacleInTheGround: 6
+  maxObstacleInTheGroundSlide: 5
+  maxObstacleEnemy: 4
   coins:
   - {fileID: 4943322131111448022}
   - {fileID: 4544962937888039584}
