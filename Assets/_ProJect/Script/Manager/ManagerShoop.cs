@@ -20,7 +20,8 @@ public class ButtonShop
 public class ManagerShoop : GenericSingleton<ManagerShoop>
 {
     [Header("Setting")]
-    [SerializeField] private List<ButtonShop> shops;    
+    [SerializeField] private List<ButtonShop> shops;
+    [SerializeField] private AudioClip soundButton;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class ManagerShoop : GenericSingleton<ManagerShoop>
 
     private void Buy(PowerUp powerUp)
     {
+        ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);
         ButtonShop shop = shops.Find(x => x.powerUp == powerUp);
         if (shop == null) return;
 
@@ -49,7 +51,7 @@ public class ManagerShoop : GenericSingleton<ManagerShoop>
 
     private void SelectPowerUp(ButtonShop shop)
     {
-        ManagerGame.Instance.UpDateCoin(shop.cost);
+        ManagerGame.Instance.UpDateCoin(-shop.cost);
 
         ManagerGame.Instance.SavePowerUp(shop.powerUp);
     }

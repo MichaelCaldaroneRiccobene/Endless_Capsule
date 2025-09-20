@@ -21,6 +21,7 @@ public class GenerationgGround : MonoBehaviour
     private int incrementDistanceForNextLevel;
 
     private float incrementDistanceForEachGround;
+    private int timeOnSpotBoss = 15;
 
     private Transform lastGround;
     private int currentLevelIndex = 0;
@@ -69,13 +70,14 @@ public class GenerationgGround : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(20);
             isBossOne = true;
 
             while (!isBossSpwaunadet) yield return null;
 
             Debug.Log("Wait For Boss Go Away");
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(timeOnSpotBoss);
+            timeOnSpotBoss++;
             isBossOne = false;
             isBossSpwaunadet = false;
 

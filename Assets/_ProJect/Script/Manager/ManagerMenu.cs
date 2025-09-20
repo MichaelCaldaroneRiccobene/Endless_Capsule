@@ -6,6 +6,7 @@ public class ManagerMenu : GenericSingleton<ManagerMenu>
 {
     [Header("Setting")]
     [SerializeField] private string nameLevel;
+    [SerializeField] private AudioClip soundButton;
 
     [Header("Setting Camere")]
     [SerializeField] private CinemachineVirtualCamera cameraMenu;
@@ -15,7 +16,6 @@ public class ManagerMenu : GenericSingleton<ManagerMenu>
     [SerializeField] private TextMeshProUGUI coinTotal;
     [SerializeField] private TextMeshProUGUI[] textScore;
 
-    public int coin;
     public float[] score;
    
 
@@ -25,18 +25,28 @@ public class ManagerMenu : GenericSingleton<ManagerMenu>
         {
             for (int i = 0; i < textScore.Length; i++) textScore[i].text = score[i].ToString("F2");
         }
-        coinTotal.text = coin.ToString();
-
         cameraShop.Priority = 1;
     }
 
-    public void OnGoPlay() => SceneManager.LoadScene(nameLevel);
+    public void OnGoPlay()
+    {
+        ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);
+        SceneManager.LoadScene(nameLevel);
+    }
 
-    public void OnGoToShoop() => cameraShop.Priority = 11;
+    public void OnGoToShoop()
+    {
+        ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);
+        cameraShop.Priority = 11;
+    }
 
-    public void OnGoToMenu() => cameraShop.Priority = 1;
+    public void OnGoToMenu()
+    {
+        ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);
+        cameraShop.Priority = 1;
+    }
 
-    public void AddCoin(int coin) => this.coin = coin;
+    public void UpdateCoin(int coin) => coinTotal.text = coin.ToString();
 
     public void AddScoreArray(float[] index)
     {
@@ -47,8 +57,12 @@ public class ManagerMenu : GenericSingleton<ManagerMenu>
         for (int i = 0; i < index.Length; i++) score[i] = index[i];
     }
 
-    public void OnResetSave() { if(ManagerGame.Instance != null) ManagerGame.Instance.OnResetSave(); }
+    public void OnResetSave() { if(ManagerGame.Instance != null) ManagerGame.Instance.OnResetSave(); ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);}
 
-    public void QuitGame() => Application.Quit();
+    public void QuitGame()
+    {
+        ManagerAudio.Instance.PlayFXSound(soundButton, 0.1f);
+        Application.Quit();
+    }
 }
     

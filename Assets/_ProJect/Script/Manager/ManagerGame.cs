@@ -32,7 +32,7 @@ public class ManagerGame : GenericSingleton<ManagerGame>
         totCoin = saveData.coin;
         if (ManagerMenu.Instance != null)
         {
-            ManagerMenu.Instance.AddCoin(saveData.coin);
+            ManagerMenu.Instance.UpdateCoin(saveData.coin);
             ManagerMenu.Instance.AddScoreArray(saveData.scoresArray);
         }
     }
@@ -48,7 +48,7 @@ public class ManagerGame : GenericSingleton<ManagerGame>
         {
             saveData.coin += 10;
             SaveSystem.Save(saveData);
-            if (ManagerMenu.Instance != null) ManagerMenu.Instance.AddCoin(saveData.coin);
+            if (ManagerMenu.Instance != null) ManagerMenu.Instance.UpdateCoin(saveData.coin);
         }
     }
 
@@ -95,7 +95,7 @@ public class ManagerGame : GenericSingleton<ManagerGame>
     public void UpDateCoin(int value)
     {
         saveData.coin += value;
-        if(ManagerMenu.Instance != null) ManagerMenu.Instance.AddCoin(saveData.coin);
+        if(ManagerMenu.Instance != null) ManagerMenu.Instance.UpdateCoin(saveData.coin);
 
         SaveSystem.Save(saveData);
     }
